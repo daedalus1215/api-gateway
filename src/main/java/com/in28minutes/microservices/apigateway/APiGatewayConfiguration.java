@@ -14,6 +14,9 @@ public class APiGatewayConfiguration {
                         .path("/get")
                         .filters(f -> f.addRequestHeader("MyHeader", "MyURI"))
                         .uri("http://httpbin.org:80"))
+                .route(p -> p.path("/currency-exchange/**")
+                        // redirect to the currencyExchange Service and do load balancing
+                        .uri("lb://currency-exchange"))
                 .build();
     }
 }
