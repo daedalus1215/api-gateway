@@ -17,6 +17,10 @@ public class APiGatewayConfiguration {
                 .route(p -> p.path("/currency-exchange/**")
                         // redirect to the currencyExchange Service and do load balancing
                         .uri("lb://currency-exchange"))
+                .route(p -> p.path("/currency-conversion/**")
+                        .uri("lb://currency-conversion"))
+                .route(p -> p.path("/currency-conversion-feign/**")
+                        .uri("lb://currency-conversion"))
                 .build();
     }
 }
